@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Link, RichText, Date } from "prismic-reactjs";
 import ReactMarkdown from "react-markdown";
 
 const Bodytext = props => {
