@@ -37,6 +37,10 @@ class IndexPage extends React.Component {
 
 		return (
 			<React.Fragment>
+				<Seo
+					title="GatsbyJS + Strapi Template Home Page"
+					description="GatsbyJS + Strapi Template Home Page"
+				/>
 				<ThemeContext.Consumer>
 					{theme => (
 						<Hero scrollToContent={this.scrollToContent} backgrounds={backgrounds} theme={theme} />

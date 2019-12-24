@@ -1,10 +1,11 @@
 module.exports = {
-  siteTitle: "HeroBlog - a GatsbyJS starter", // <title>
-  shortSiteTitle: "HeroBlog - GatsbyJS starter", // <title> ending for posts and pages
-  siteDescription: "HeroBlog is a GatsbyJS starter.",
+  siteTitle: "GatsbyJS + Strapi Starter", // <title>
+  shortSiteTitle: "HeroBlog - GatsbyJS + Strapi starter", // <title> ending for posts and pages
+  siteDescription: "HeroBlog is a GatsbyJS and Strapi starter.",
   siteUrl: "https://gatsby-starter-hero-blog.greglobinski.com",
-  // pathPrefix: "",
   siteImage: "preview.jpg",
+  // pathPrefix: "",
+
   siteLanguage: "en",
 
   /* author */

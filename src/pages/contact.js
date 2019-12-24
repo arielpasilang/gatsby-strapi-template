@@ -10,6 +10,7 @@ import Seo from "../components/Seo";
 const ContactPage = props => {
   return (
     <React.Fragment>
+      <Seo title="Contact Us" description="Contact Us" />
       <ThemeContext.Consumer>
         {theme => (
           <Article theme={theme}>

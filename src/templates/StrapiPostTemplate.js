@@ -14,6 +14,7 @@ const StrapiPostTemplate = props => {
 
 	return (
 		<React.Fragment>
+			<Seo title={post && post.title} description={post && post.ogDescription} />
 			<ThemeContext.Consumer>
 				{theme => (
 					<Article theme={theme}>

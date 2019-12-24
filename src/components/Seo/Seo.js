@@ -1,50 +1,64 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
-import Helmet from "react-helmet";
-import config from "../../../content/meta/config";
-
-const Seo = props => {
-  const { data, facebook } = props;
-  const postTitle = ((data || {}).frontmatter || {}).title;
-  const postDescription = ((data || {}).frontmatter || {}).description;
-  const postCover = ((data || {}).frontmatter || {}).cover;
-  const postSlug = ((data || {}).fields || {}).slug;
-
-  const title = postTitle ? `${postTitle} - ${config.shortSiteTitle}` : config.siteTitle;
-  const description = postDescription ? postDescription : config.siteDescription;
-  const image = postCover ? postCover : config.siteImage;
-  const url = config.siteUrl + config.pathPrefix + postSlug;
-
-  return (
-    <Helmet
-      htmlAttributes={{
-        lang: config.siteLanguage,
-        prefix: "og: http://ogp.me/ns#"
-      }}
-    >
-      {/* General tags */}
-      <title>{title}</title>
-      <meta name="description" content={description} />
-      {/* OpenGraph tags */}
-      <meta property="og:url" content={url} />
-      <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={image} />
-      <meta property="og:type" content="website" />
-      <meta property="fb:app_id" content={facebook.appId} />
-      {/* Twitter Card tags */}
-      <meta name="twitter:card" content="summary" />
-      <meta
-        name="twitter:creator"
-        content={config.authorTwitterAccount ? config.authorTwitterAccount : ""}
-      />
-    </Helmet>
-  );
+import { StaticQuery, graphql } from "gatsby";
+const SEO = ({ title, description, image, pathname, article }) => (
+  <StaticQuery
+    query={query}
+    render={({
+      site: {
+        siteMetadata: { defaultTitle, defaultDescription, siteUrl, defaultImage, defaultSiteUrl }
+      }
+    }) => {
+      const seo = {
+        title: title + " - " + defaultTitle || defaultTitle,
+        description: description || defaultDescription,
+        image: `${defaultSiteUrl}/${defaultImage || "No Image"}`,
+        url: `${defaultSiteUrl}/${pathname || "/"}`
+      };
+      return (
+        <>
+          <Helmet title={seo.title}>
+            <meta name="description" content={seo.description} />
+            <meta name="image" content={seo.image} />
+            {seo.url && <meta property="og:url" content={seo.url} />}
+            {(article ? true : null) && <meta property="og:type" content="article" />}
+            {seo.title && <meta property="og:title" content={seo.title} />}
+            {seo.description && <meta property="og:description" content={seo.description} />}
+            {seo.image && <meta property="og:image" content={seo.image} />}
+            {seo.title && <meta name="twitter:title" content={seo.title} />}
+            {seo.description && <meta name="twitter:description" content={seo.description} />}
+            {seo.image && <meta name="twitter:image" content={seo.image} />}
+          </Helmet>
+        </>
+      );
+    }}
+  />
+);
+export default SEO;
+SEO.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image: PropTypes.string,
+  pathname: PropTypes.string,
+  article: PropTypes.bool
 };
-
-Seo.propTypes = {
-  data: PropTypes.object,
-  facebook: PropTypes.object.isRequired
+SEO.defaultProps = {
+  title: null,
+  description: null,
+  image: null,
+  pathname: null,
+  article: false
 };
-
-export default Seo;
+const query = graphql`
+  query SEO {
+    site {
+      siteMetadata {
+        defaultTitle: title
+        defaultDescription: description
+        defaultImage: image
+        defaultSiteUrl: siteUrl
+      }
+    }
+  }
+`;
