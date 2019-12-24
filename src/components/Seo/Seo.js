@@ -13,7 +13,7 @@ const SEO = ({ title, description, image, pathname, article }) => (
       const seo = {
         title: title + " - " + defaultTitle || defaultTitle,
         description: description || defaultDescription,
-        image: `${defaultSiteUrl}/${defaultImage || "No Image"}`,
+        image: `${defaultSiteUrl}/${image}` || `${defaultSiteUrl}/${defaultImage}`,
         url: `${defaultSiteUrl}/${pathname || "/"}`
       };
       return (

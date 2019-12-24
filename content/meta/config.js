@@ -2,7 +2,7 @@ module.exports = {
   siteTitle: "GatsbyJS + Strapi Starter", // <title>
   shortSiteTitle: "HeroBlog - GatsbyJS + Strapi starter", // <title> ending for posts and pages
   siteDescription: "HeroBlog is a GatsbyJS and Strapi starter.",
-  siteUrl: "https://gatsby-starter-hero-blog.greglobinski.com",
+  siteUrl: "https://heroblog-gatsbyjs-strapicms.netlify.com",
   siteImage: "preview.jpg",
   // pathPrefix: "",
 

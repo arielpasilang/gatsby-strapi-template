@@ -14,7 +14,11 @@ const StrapiPostTemplate = props => {
 
 	return (
 		<React.Fragment>
-			<Seo title={post && post.title} description={post && post.ogDescription} />
+			<Seo
+				title={post && post.title}
+				description={post && post.ogDescription}
+				image={post && post.ogImage && post.ogImage.publicURL}
+			/>
 			<ThemeContext.Consumer>
 				{theme => (
 					<Article theme={theme}>
@@ -48,8 +52,12 @@ export const query = graphql`
 			cover {
 				publicURL
 			}
+			ogImage {
+				publicURL
+			}
 			ogType
 			ogTitle
+
 			ogDescription
 			ogUrl
 			ogSiteName
